@@ -4,7 +4,7 @@
 
 # pi-mesh-subagents
 
-> **Fork notice:** This is a hard fork of [nicobailon/pi-subagents](https://github.com/nicobailon/pi-subagents) for use with [axiomantic/pi-mesh](https://github.com/axiomantic/pi-mesh). It is intended for substantially different functionality and is **not** intended for upstream contribution.
+> **Fork notice:** This is a fork of [nicobailon/pi-subagents](https://github.com/nicobailon/pi-subagents) for use with [axiomantic/pi-mesh](https://github.com/axiomantic/pi-mesh).
 
 `pi-mesh-subagents` lets Pi delegate work to focused child agents. Use it for code review, scouting, implementation, parallel audits, saved workflows, background jobs, and anything else that benefits from a second or third set of model eyes.
 

@@ -13,7 +13,7 @@ https://github.com/user-attachments/assets/702554ec-faaf-4635-80aa-fb5d6e292fd1
 ## Installation
 
 ```bash
-pi install npm:pi-mesh-subagents
+pi install github:axiomantic/pi-mesh-subagents
 ```
 
 That is the only required step. You can add optional pieces later.

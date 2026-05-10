@@ -36,7 +36,7 @@ describe("agent frontmatter defaultContext", () => {
 	});
 
 	it("parses defaultContext from discovered agent frontmatter", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-agent-default-context-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-agent-default-context-"));
 		tempDirs.push(dir);
 		const agentsDir = path.join(dir, ".pi", "agents");
 		fs.mkdirSync(agentsDir, { recursive: true });
@@ -55,7 +55,7 @@ Do work
 	});
 
 	it("loads packaged planner, worker, and oracle with fork defaultContext", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-builtin-default-context-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-builtin-default-context-"));
 		tempDirs.push(dir);
 		const agents = discoverAgentsAll(dir).builtin;
 
@@ -85,7 +85,7 @@ describe("agent frontmatter maxSubagentDepth", () => {
 	});
 
 	it("parses maxSubagentDepth from discovered agent frontmatter", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-agent-frontmatter-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-agent-frontmatter-"));
 		tempDirs.push(dir);
 		const agentsDir = path.join(dir, ".pi", "agents");
 		fs.mkdirSync(agentsDir, { recursive: true });
@@ -123,7 +123,7 @@ describe("agent frontmatter fallbackModels", () => {
 	});
 
 	it("parses fallbackModels from discovered agent frontmatter", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-agent-fallback-frontmatter-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-agent-fallback-frontmatter-"));
 		tempDirs.push(dir);
 		const agentsDir = path.join(dir, ".pi", "agents");
 		fs.mkdirSync(agentsDir, { recursive: true });
@@ -160,7 +160,7 @@ describe("agent frontmatter systemPromptMode", () => {
 	});
 
 	it("parses systemPromptMode from discovered agent frontmatter", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-agent-prompt-mode-frontmatter-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-agent-prompt-mode-frontmatter-"));
 		tempDirs.push(dir);
 		const agentsDir = path.join(dir, ".pi", "agents");
 		fs.mkdirSync(agentsDir, { recursive: true });
@@ -198,7 +198,7 @@ describe("agent frontmatter prompt inheritance flags", () => {
 	});
 
 	it("parses inheritProjectContext and inheritSkills from discovered agent frontmatter", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-agent-prompt-inheritance-frontmatter-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-agent-prompt-inheritance-frontmatter-"));
 		tempDirs.push(dir);
 		const agentsDir = path.join(dir, ".pi", "agents");
 		fs.mkdirSync(agentsDir, { recursive: true });
@@ -221,7 +221,7 @@ Do work
 
 describe("agent frontmatter prompt assembly defaults", () => {
 	it("defaults ordinary agents to replace mode with no inherited context or skills", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-agent-default-prompt-settings-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-agent-default-prompt-settings-"));
 		tempDirs.push(dir);
 		const agentsDir = path.join(dir, ".pi", "agents");
 		fs.mkdirSync(agentsDir, { recursive: true });
@@ -241,8 +241,8 @@ Do work
 	});
 
 	it("builtin agents inherit project context by default", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-builtin-default-prompt-settings-"));
-		const homeDir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-builtin-default-home-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-builtin-default-prompt-settings-"));
+		const homeDir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-builtin-default-home-"));
 		tempDirs.push(dir);
 		tempDirs.push(homeDir);
 		const previousHome = process.env.HOME;
@@ -268,8 +268,8 @@ Do work
 	});
 
 	it("bundled agents all have explicit tool allowlists", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-builtin-tools-"));
-		const homeDir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-builtin-tools-home-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-builtin-tools-"));
+		const homeDir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-builtin-tools-home-"));
 		tempDirs.push(dir);
 		tempDirs.push(homeDir);
 		const previousHome = process.env.HOME;
@@ -292,8 +292,8 @@ Do work
 	});
 
 	it("worker and delegate include the child-facing supervisor tool", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-builtin-supervisor-tool-"));
-		const homeDir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-builtin-supervisor-tool-home-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-builtin-supervisor-tool-"));
+		const homeDir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-builtin-supervisor-tool-home-"));
 		tempDirs.push(dir);
 		tempDirs.push(homeDir);
 		const previousHome = process.env.HOME;
@@ -317,7 +317,7 @@ Do work
 	});
 
 	it("defaults delegate to append mode with inherited project context", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-agent-delegate-default-prompt-settings-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-agent-delegate-default-prompt-settings-"));
 		tempDirs.push(dir);
 		const agentsDir = path.join(dir, ".pi", "agents");
 		fs.mkdirSync(agentsDir, { recursive: true });
@@ -339,7 +339,7 @@ Do work
 
 describe("packaged agent and chain discovery", () => {
 	it("recursively discovers nested project agents while keeping chain files separate", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-recursive-agent-discovery-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-recursive-agent-discovery-"));
 		tempDirs.push(dir);
 		const nestedDir = path.join(dir, ".pi", "agents", "code-analysis", "deep");
 		const nestedChainDir = path.join(dir, ".pi", "chains", "code-analysis", "deep");
@@ -369,7 +369,7 @@ Review
 	});
 
 	it("registers packaged agents by runtime name and serializes local name plus package", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-packaged-agent-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-packaged-agent-"));
 		tempDirs.push(dir);
 		const agentsDir = path.join(dir, ".pi", "agents");
 		fs.mkdirSync(agentsDir, { recursive: true });
@@ -393,7 +393,7 @@ Inspect code
 	});
 
 	it("recursively discovers packaged chains by runtime name and preserves package on serialize", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-packaged-chain-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-packaged-chain-"));
 		tempDirs.push(dir);
 		const nestedDir = path.join(dir, ".pi", "chains", "flows");
 		fs.mkdirSync(nestedDir, { recursive: true });
@@ -422,7 +422,7 @@ Inspect {task}
 	});
 
 	it("keeps packaged and un-packaged runtime names distinct while preserving un-packaged precedence", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-packaged-collisions-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-packaged-collisions-"));
 		tempDirs.push(dir);
 		fs.mkdirSync(path.join(dir, ".agents"), { recursive: true });
 		fs.mkdirSync(path.join(dir, ".pi", "agents"), { recursive: true });
@@ -476,7 +476,7 @@ Inspect
 	});
 
 	it("normalizes package frontmatter consistently for agents and chains", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-package-normalize-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-package-normalize-"));
 		tempDirs.push(dir);
 		const agentsDir = path.join(dir, ".pi", "agents");
 		const chainsDir = path.join(dir, ".pi", "chains");
@@ -507,7 +507,7 @@ Review
 	});
 
 	it("skips invalid package frontmatter that cannot be normalized", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-invalid-package-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-invalid-package-"));
 		tempDirs.push(dir);
 		const agentsDir = path.join(dir, ".pi", "agents");
 		const chainsDir = path.join(dir, ".pi", "chains");
@@ -540,7 +540,7 @@ Review
 
 describe("project agent directory discovery", () => {
 	it("discovers project agents from both .agents and .pi/agents", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-project-agent-dirs-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-project-agent-dirs-"));
 		tempDirs.push(dir);
 		fs.mkdirSync(path.join(dir, ".agents", "skills"), { recursive: true });
 		fs.mkdirSync(path.join(dir, ".pi", "agents"), { recursive: true });
@@ -566,7 +566,7 @@ Canonical prompt
 	});
 
 	it("prefers .pi/agents over .agents on project agent name collisions", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-project-agent-collision-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-project-agent-collision-"));
 		tempDirs.push(dir);
 		fs.mkdirSync(path.join(dir, ".agents"), { recursive: true });
 		fs.mkdirSync(path.join(dir, ".pi", "agents"), { recursive: true });
@@ -593,7 +593,7 @@ Canonical prompt
 	});
 
 	it("uses the project root for the canonical project agent dir even when only .agents exists", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-project-agent-root-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-project-agent-root-"));
 		tempDirs.push(dir);
 		const nested = path.join(dir, "packages", "app");
 		fs.mkdirSync(path.join(dir, ".agents", "skills"), { recursive: true });
@@ -604,7 +604,7 @@ Canonical prompt
 	});
 
 	it("discovers project chains from .pi/chains", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-project-chain-dirs-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-project-chain-dirs-"));
 		tempDirs.push(dir);
 		fs.mkdirSync(path.join(dir, ".pi", "agents"), { recursive: true });
 		fs.mkdirSync(path.join(dir, ".pi", "chains", "flows"), { recursive: true });
@@ -635,8 +635,8 @@ Inspect canonical
 	});
 
 	it("prefers project .pi/chains over user chains on name collisions", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-project-chain-collision-"));
-		const home = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-user-chain-home-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-project-chain-collision-"));
+		const home = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-user-chain-home-"));
 		tempDirs.push(dir, home);
 		const oldHome = process.env.HOME;
 		const oldUserProfile = process.env.USERPROFILE;

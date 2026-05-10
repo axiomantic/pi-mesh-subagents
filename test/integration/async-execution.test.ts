@@ -758,8 +758,8 @@ describe("async execution utilities", { skip: !available ? "pi packages not avai
 		}
 	});
 
-	it("background single runs report unavailable pi-subagents skill requests", () => {
-		const id = `async-pi-subagents-skill-${Date.now().toString(36)}`;
+	it("background single runs report unavailable pi-mesh-subagents skill requests", () => {
+		const id = `async-pi-mesh-subagents-skill-${Date.now().toString(36)}`;
 		const result = executeAsyncSingle(id, {
 			agent: "worker",
 			task: "Do work",
@@ -776,18 +776,18 @@ describe("async execution utilities", { skip: !available ? "pi packages not avai
 			},
 			shareEnabled: false,
 			sessionRoot: path.join(tempDir, "sessions"),
-			skills: ["pi-subagents"],
+			skills: ["pi-mesh-subagents"],
 			maxSubagentDepth: 2,
 		});
 
 		assert.equal(result.isError, true);
-		assert.match(result.content[0]?.text ?? "", /Skills not found: pi-subagents/);
+		assert.match(result.content[0]?.text ?? "", /Skills not found: pi-mesh-subagents/);
 	});
 
-	it("background chains report unavailable pi-subagents skill requests", () => {
-		const id = `async-chain-pi-subagents-skill-${Date.now().toString(36)}`;
+	it("background chains report unavailable pi-mesh-subagents skill requests", () => {
+		const id = `async-chain-pi-mesh-subagents-skill-${Date.now().toString(36)}`;
 		const result = executeAsyncChain(id, {
-			chain: [{ agent: "worker", task: "Do work", skill: ["pi-subagents"] }],
+			chain: [{ agent: "worker", task: "Do work", skill: ["pi-mesh-subagents"] }],
 			agents: [makeAgent("worker")],
 			ctx: { pi: { events: { emit() {} } }, cwd: tempDir, currentSessionId: "session-1" },
 			cwd: tempDir,
@@ -805,7 +805,7 @@ describe("async execution utilities", { skip: !available ? "pi packages not avai
 		});
 
 		assert.equal(result.isError, true);
-		assert.match(result.content[0]?.text ?? "", /Skills not found: pi-subagents/);
+		assert.match(result.content[0]?.text ?? "", /Skills not found: pi-mesh-subagents/);
 	});
 
 	it("background chains resolve relative step cwd values against the shared cwd", { skip: !isAsyncAvailable() ? "jiti not available" : undefined }, async () => {

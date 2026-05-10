@@ -51,7 +51,7 @@ const LOAD_SKILLS_CACHE_TTL_MS = 5000;
 
 const CONFIG_DIR = ".pi";
 const AGENT_DIR = path.join(os.homedir(), ".pi", "agent");
-const SUBAGENT_ORCHESTRATION_SKILL = "pi-subagents";
+const SUBAGENT_ORCHESTRATION_SKILL = "pi-mesh-subagents";
 
 const SOURCE_PRIORITY: Record<SkillSource, number> = {
 	project: 700,

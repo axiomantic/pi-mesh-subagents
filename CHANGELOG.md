@@ -100,8 +100,8 @@
 
 ### Changed
 - Strengthened `context-builder` guidance so handoffs require reading all relevant files and doing needed tool-available research before summarizing.
-- Expanded the bundled `pi-subagents` skill with tool-level recipes for the packaged prompt workflows, including context-build and handoff-plan patterns that parent agents can apply without slash commands.
-- Updated `README.md` to explain the bundled `pi-subagents` skill, what it covers, and how it helps the orchestrating agent.
+- Expanded the bundled `pi-mesh-subagents` skill with tool-level recipes for the packaged prompt workflows, including context-build and handoff-plan patterns that parent agents can apply without slash commands.
+- Updated `README.md` to explain the bundled `pi-mesh-subagents` skill, what it covers, and how it helps the orchestrating agent.
 
 ### Fixed
 - Make active-long-running notices time-based by default, with turn and token thresholds available only as explicit opt-in budget guards.
@@ -157,7 +157,7 @@
 ### Changed
 - Consolidated the `oracle-executor` role into `worker`: `worker` now uses `openai-codex/gpt-5.3-codex` with high thinking and stricter approved-direction guardrails, while `researcher` and `context-builder` now use medium thinking.
 - Updated the bundled `scout` agent model/thinking defaults.
-- Hard-cut over grouped intercom bridge result delivery: with the bridge active, parent-side `pi-subagents` emits one grouped `subagent:result-intercom` message per foreground parent run (single, top-level parallel, or chain) and one per completed async result file. Acknowledged foreground delivery returns a compact receipt instead of duplicating full output in the normal tool result; unacknowledged delivery preserves the normal full output. Grouped messages include child intercom targets and full child summaries.
+- Hard-cut over grouped intercom bridge result delivery: with the bridge active, parent-side `pi-mesh-subagents` emits one grouped `subagent:result-intercom` message per foreground parent run (single, top-level parallel, or chain) and one per completed async result file. Acknowledged foreground delivery returns a compact receipt instead of duplicating full output in the normal tool result; unacknowledged delivery preserves the normal full output. Grouped messages include child intercom targets and full child summaries.
 
 ### Fixed
 - Fixed status and manager row rendering so multiline or tabbed content cannot overflow table rows.
@@ -177,7 +177,7 @@
 
 ### Changed
 - Tightened the packaged `/parallel-review` prompt so fresh-context reviewers get distinct angles and return evidence-backed findings.
-- Refreshed the packaged `pi-subagents` skill with doctor diagnostics, saved-chain launches, prompt shortcuts, builtin overrides, intercom bridge guidance, fresh-context review defaults, and parallel task behavior.
+- Refreshed the packaged `pi-mesh-subagents` skill with doctor diagnostics, saved-chain launches, prompt shortcuts, builtin overrides, intercom bridge guidance, fresh-context review defaults, and parallel task behavior.
 - Reworked the README around plain-language usage, good first prompts, packaged prompt shortcuts, builtin agent guidance, intercom setup, model overrides, and optional reference material.
 
 ## [0.19.1] - 2026-04-26
@@ -241,7 +241,7 @@
 ## [0.17.4] - 2026-04-22
 
 ### Added
-- Bundled a `pi-subagents` skill that teaches agents how to use builtin subagents, slash-command vs tool workflows, management-mode agent creation/editing, fork/intercom coordination, clarify mode, worktrees, async status inspection, and chain templating.
+- Bundled a `pi-mesh-subagents` skill that teaches agents how to use builtin subagents, slash-command vs tool workflows, management-mode agent creation/editing, fork/intercom coordination, clarify mode, worktrees, async status inspection, and chain templating.
 
 ### Changed
 - Tightened the builtin `oracle` prompt so intercom-enabled forked reviews now prefer concise conversational handoffs during the review and send a short final recommendation via `pi-intercom` before returning the full structured result.
@@ -296,7 +296,7 @@
 ## [0.16.1] - 2026-04-16
 
 ### Changed
-- Parallel subagent startup no longer applies any worker-start stagger in `mapConcurrent()`. `pi-subagents` now relies on Pi core's settings/auth lock retry behavior instead of carrying its own startup-delay workaround.
+- Parallel subagent startup no longer applies any worker-start stagger in `mapConcurrent()`. `pi-mesh-subagents` now relies on Pi core's settings/auth lock retry behavior instead of carrying its own startup-delay workaround.
 
 ## [0.16.0] - 2026-04-16
 
@@ -933,8 +933,8 @@
 ## [0.2.0] - 2026-01-24
 
 ### Changed
-- **Rebranded to `pi-subagents`** (was `pi-async-subagents`)
-- Now installable via `npx pi-subagents`
+- **Rebranded to `pi-mesh-subagents`** (was `pi-async-subagents`)
+- Now installable via `npx pi-mesh-subagents`
 
 ### Added
 - Chain TUI now supports editing output paths, reads lists, and toggling progress per step

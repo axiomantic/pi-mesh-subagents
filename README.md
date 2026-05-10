@@ -1,17 +1,19 @@
 <p>
-  <img src="https://raw.githubusercontent.com/nicobailon/pi-subagents/main/banner.png" alt="pi-subagents" width="1100">
+  <img src="https://raw.githubusercontent.com/nicobailon/pi-subagents/main/banner.png" alt="pi-mesh-subagents" width="1100">
 </p>
 
-# pi-subagents
+# pi-mesh-subagents
 
-`pi-subagents` lets Pi delegate work to focused child agents. Use it for code review, scouting, implementation, parallel audits, saved workflows, background jobs, and anything else that benefits from a second or third set of model eyes.
+> **Fork notice:** This is a hard fork of [nicobailon/pi-subagents](https://github.com/nicobailon/pi-subagents) for use with [axiomantic/pi-mesh](https://github.com/axiomantic/pi-mesh). It is intended for substantially different functionality and is **not** intended for upstream contribution.
+
+`pi-mesh-subagents` lets Pi delegate work to focused child agents. Use it for code review, scouting, implementation, parallel audits, saved workflows, background jobs, and anything else that benefits from a second or third set of model eyes.
 
 https://github.com/user-attachments/assets/702554ec-faaf-4635-80aa-fb5d6e292fd1
 
 ## Installation
 
 ```bash
-pi install npm:pi-subagents
+pi install npm:pi-mesh-subagents
 ```
 
 That is the only required step. You can add optional pieces later.
@@ -176,7 +178,7 @@ Use the optional prompt shortcuts below when you want the pattern to be repeatab
 
 Packaged `planner`, `worker`, and `oracle` default to forked context when a launch omits `context`; pass `context: "fresh"` when you intentionally want a fresh child run.
 
-Child-safety boundaries are enforced at runtime. Spawned child sessions do not register the `subagent` tool, do not receive the bundled `pi-subagents` skill, and receive explicit boundary instructions that they are not the parent orchestrator and must not propose or run subagents. Forked child context filtering also removes parent-only subagent artifacts (including old hidden orchestration-instruction messages, slash/status/control messages, and prior parent `subagent` tool-call/tool-result history) while preserving ordinary prose and unrelated tool calls/results.
+Child-safety boundaries are enforced at runtime. Spawned child sessions do not register the `subagent` tool, do not receive the bundled `pi-mesh-subagents` skill, and receive explicit boundary instructions that they are not the parent orchestrator and must not propose or run subagents. Forked child context filtering also removes parent-only subagent artifacts (including old hidden orchestration-instruction messages, slash/status/control messages, and prior parent `subagent` tool-call/tool-result history) while preserving ordinary prose and unrelated tool calls/results.
 
 ## Optional shortcuts
 
@@ -195,13 +197,13 @@ Add `autofix` to `/parallel-review` or `/parallel-cleanup` to apply only the syn
 
 ## Optional pi-intercom companion
 
-`pi-subagents` works without `pi-intercom`. Install `pi-intercom` only if you want child agents to talk back to the parent Pi session while they are running.
+`pi-mesh-subagents` works without `pi-intercom`. Install `pi-intercom` only if you want child agents to talk back to the parent Pi session while they are running.
 
 ```bash
 pi install npm:pi-intercom
 ```
 
-Most users do not call `intercom` directly. After `pi-intercom` is installed, `pi-subagents` can automatically give child agents a private coordination channel back to the parent session. The bridge recognizes the normal `pi install npm:pi-intercom` package install as well as legacy local extension checkouts.
+Most users do not call `intercom` directly. After `pi-intercom` is installed, `pi-mesh-subagents` can automatically give child agents a private coordination channel back to the parent session. The bridge recognizes the normal `pi install npm:pi-intercom` package install as well as legacy local extension checkouts.
 
 Use it for work where the child might need a decision instead of guessing:
 
@@ -217,7 +219,7 @@ The child can use one dedicated coordination tool:
 
 - `contact_supervisor`: the child contacts the parent/supervisor session that delegated the task. Use `reason: "need_decision"` for blocking decisions or clarification, and `reason: "progress_update"` for short non-blocking updates when a discovery changes the plan. Do not ask for clarification when the only conflict is review-only/no-edit versus progress-writing or artifact-writing instructions; no-edit wins.
 
-Child-side routine completion handoffs are still not expected. With the intercom bridge active, parent-side `pi-subagents` sends grouped completion results through `pi-intercom`: one grouped message per foreground parent `subagent` run and one per completed async result file. Acknowledged foreground delivery returns a compact receipt with artifact/session paths; if unacknowledged, the normal full output is preserved. Grouped messages include child intercom targets and full child summaries.
+Child-side routine completion handoffs are still not expected. With the intercom bridge active, parent-side `pi-mesh-subagents` sends grouped completion results through `pi-intercom`: one grouped message per foreground parent `subagent` run and one per completed async result file. Acknowledged foreground delivery returns a compact receipt with artifact/session paths; if unacknowledged, the normal full output is preserved. Grouped messages include child intercom targets and full child summaries.
 
 If a child appears stalled, needs-attention notices can show up in the parent session with useful next actions, such as checking `subagent({ action: "status" })`, interrupting the run, or nudging the child.
 
@@ -457,7 +459,7 @@ Important fields:
 
 ### Tool and extension selection
 
-If `tools` is omitted, `pi-subagents` does not pass `--tools`, so the child gets Pi’s normal builtin tools. If `tools` is present, regular tool names become an explicit allowlist. `mcp:` entries are split out and forwarded as direct MCP selections. Path-like `tools` entries, such as extension paths or `.ts`/`.js` files, are treated as tool-extension paths rather than builtin tool names.
+If `tools` is omitted, `pi-mesh-subagents` does not pass `--tools`, so the child gets Pi’s normal builtin tools. If `tools` is present, regular tool names become an explicit allowlist. `mcp:` entries are split out and forwarded as direct MCP selections. Path-like `tools` entries, such as extension paths or `.ts`/`.js` files, are treated as tool-extension paths rather than builtin tool names.
 
 Examples:
 
@@ -579,7 +581,7 @@ Missing skills do not fail execution. The result summary shows a warning.
 
 ### Bundled skill
 
-The package bundles a `pi-subagents` skill that is automatically available to the parent agent when the extension is installed. It is for the orchestrating parent only: child subagents never receive it, and their context is explicitly filtered to strip parent-only orchestration instructions.
+The package bundles a `pi-mesh-subagents` skill that is automatically available to the parent agent when the extension is installed. It is for the orchestrating parent only: child subagents never receive it, and their context is explicitly filtered to strip parent-only orchestration instructions.
 
 What the bundled skill covers:
 - **Delegation patterns**: when to launch which agent, whether to use single, parallel, chain, or async mode, and whether to use fresh or forked context
@@ -769,7 +771,7 @@ After a worktree parallel step completes, per-agent diff stats are appended to t
 
 ## Configuration
 
-`pi-subagents` reads optional JSON config from `~/.pi/agent/extensions/subagent/config.json`.
+`pi-mesh-subagents` reads optional JSON config from `~/.pi/agent/extensions/subagent/config.json`.
 
 ### `asyncByDefault`
 
@@ -862,7 +864,7 @@ stdin is a JSON object with `repoRoot`, `worktreePath`, `agentCwd`, `branch`, `i
 Each chain run creates a user-scoped temp directory like:
 
 ```text
-<tmpdir>/pi-subagents-<scope>/chain-runs/{runId}/
+<tmpdir>/pi-mesh-subagents-<scope>/chain-runs/{runId}/
 ```
 
 It may contain files such as `context.md`, `plan.md`, `progress.md`, and `parallel-{stepIndex}/.../output.md`. Directories older than 24 hours are cleaned up on extension startup.
@@ -883,7 +885,7 @@ Async completions notify only the originating session. The result watcher emits 
 Async runs write:
 
 ```text
-<tmpdir>/pi-subagents-<scope>/async-subagent-runs/<id>/
+<tmpdir>/pi-mesh-subagents-<scope>/async-subagent-runs/<id>/
   status.json
   events.jsonl
   output-<n>.log
@@ -946,7 +948,7 @@ The result watcher emits `subagent:async-complete`; `src/extension/index.ts` reg
 
 ## Prompt-template integration
 
-`pi-subagents` works standalone through natural language, the `subagent` tool, slash commands, and the packaged prompt shortcuts listed near the top of this README. If you use [pi-prompt-template-model](https://github.com/nicobailon/pi-prompt-template-model), you can also wrap subagent delegation in your own reusable prompt templates.
+`pi-mesh-subagents` works standalone through natural language, the `subagent` tool, slash commands, and the packaged prompt shortcuts listed near the top of this README. If you use [pi-prompt-template-model](https://github.com/nicobailon/pi-prompt-template-model), you can also wrap subagent delegation in your own reusable prompt templates.
 
 Example:
 

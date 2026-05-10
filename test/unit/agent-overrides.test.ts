@@ -23,8 +23,8 @@ function writeProjectAgent(cwd: string, name: string, body: string): void {
 
 describe("builtin agent overrides", () => {
 	beforeEach(() => {
-		tempHome = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-home-"));
-		tempProject = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-project-"));
+		tempHome = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-home-"));
+		tempProject = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-project-"));
 		process.env.HOME = tempHome;
 		process.env.USERPROFILE = tempHome;
 	});

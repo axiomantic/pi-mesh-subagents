@@ -1,5 +1,5 @@
 ---
-name: pi-subagents
+name: pi-mesh-subagents
 description: |
   Delegate work to builtin or custom subagents with single-agent, chain,
   parallel, async, forked-context, and intercom-coordinated workflows. Use
@@ -412,7 +412,7 @@ history as a baseline contract.
 
 ## Subagent + Intercom Coordination
 
-`pi-subagents` works without `pi-intercom`. When `pi-intercom` is installed and enabled, the intercom bridge can automatically give child agents a private coordination channel back to the parent session.
+`pi-mesh-subagents` works without `pi-intercom`. When `pi-intercom` is installed and enabled, the intercom bridge can automatically give child agents a private coordination channel back to the parent session.
 
 Most agents should not call generic `intercom` directly unless bridge instructions provide a target and `contact_supervisor` is unavailable. Do not invent a target. Prefer the tool from the injected bridge instructions.
 
@@ -431,7 +431,7 @@ Use `contact_supervisor` with `reason: "progress_update"` when:
 Message conventions:
 - `reason: "need_decision"` waits for the parent reply and returns it to the child.
 - `reason: "progress_update"` is non-blocking and should stay concise.
-- Child-side routine completion handoffs are not expected. With the intercom bridge active, parent-side `pi-subagents` sends grouped completion results through `pi-intercom`: one grouped message per foreground parent run and one per completed async result file. Acknowledged foreground delivery returns a compact receipt with artifact/session paths; if unacknowledged, the normal full output is preserved. Grouped messages include child intercom targets and full child summaries.
+- Child-side routine completion handoffs are not expected. With the intercom bridge active, parent-side `pi-mesh-subagents` sends grouped completion results through `pi-intercom`: one grouped message per foreground parent run and one per completed async result file. Acknowledged foreground delivery returns a compact receipt with artifact/session paths; if unacknowledged, the normal full output is preserved. Grouped messages include child intercom targets and full child summaries.
 
 If bridge instructions provide the child-facing tool, a child can ask:
 
@@ -549,7 +549,7 @@ with `subagent(...)` when the user describes the workflow in natural language
 instead of invoking a slash command.
 
 If `pi-prompt-template-model` is installed, additional user prompt templates can delegate into
-`pi-subagents`. This is useful when a slash command should always run through a
+`pi-mesh-subagents`. This is useful when a slash command should always run through a
 particular agent or with forked context.
 
 ## Important Constraints
@@ -638,7 +638,7 @@ clarify → planner → worker → parallel fresh-context reviewers → worker
 
 The first `worker` implements the approved plan. The parallel reviewers inspect the resulting diff from fresh context. The final `worker` applies synthesized review fixes in forked context. Do not stop after parallel review unless the user explicitly asked for review-only output or the review surfaced a decision that needs approval first.
 
-Keep orchestration authority in the parent session. Child subagents should not launch more subagents, read this skill, or run their own orchestration loops. Spawned subagents do not receive the `pi-subagents` skill, parent-only status/control/slash messages, prior parent `subagent` tool-call/tool-result artifacts, or the `subagent` extension tool. Child context filtering also strips old hidden orchestration-instruction messages when they appear in inherited history. Every child also receives a boundary instruction that says the parent owns orchestration, the child must not propose or run subagents, and implementation children must call real edit/write tools instead of printing pseudo tool calls. Pass children concrete role-specific work instead.
+Keep orchestration authority in the parent session. Child subagents should not launch more subagents, read this skill, or run their own orchestration loops. Spawned subagents do not receive the `pi-mesh-subagents` skill, parent-only status/control/slash messages, prior parent `subagent` tool-call/tool-result artifacts, or the `subagent` extension tool. Child context filtering also strips old hidden orchestration-instruction messages when they appear in inherited history. Every child also receives a boundary instruction that says the parent owns orchestration, the child must not propose or run subagents, and implementation children must call real edit/write tools instead of printing pseudo tool calls. Pass children concrete role-specific work instead.
 
 1. Clarify first. This is mandatory. Gather code context with `scout` or `context-builder`, add `researcher` only when external evidence matters, then ask the user clarifying questions with `interview` until scope, acceptance criteria, constraints, and non-goals are clear.
 2. Plan when useful. For complex work, call `planner` or write a plan doc yourself and get approval before implementation. For simple work, confirm shared understanding and explicitly note why planning is skipped.

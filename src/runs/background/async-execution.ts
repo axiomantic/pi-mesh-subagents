@@ -189,7 +189,7 @@ function spawnRunner(cfg: object, suffix: string, cwd: string): { pid?: number; 
 		windowsHide: true,
 	});
 	proc.on("error", (error) => {
-		console.error(`[pi-subagents] async spawn failed: ${error.message}`);
+		console.error(`[pi-mesh-subagents] async spawn failed: ${error.message}`);
 	});
 	if (typeof proc.pid !== "number") {
 		return { error: `async runner did not produce a pid for cwd: ${cwd}` };
@@ -206,7 +206,7 @@ function formatAsyncStartError(mode: SubagentRunMode, message: string): AsyncExe
 	};
 }
 
-const UNAVAILABLE_SUBAGENT_SKILL_ERROR = "Skills not found: pi-subagents";
+const UNAVAILABLE_SUBAGENT_SKILL_ERROR = "Skills not found: pi-mesh-subagents";
 
 class UnavailableSubagentSkillError extends Error {}
 class AsyncStartValidationError extends Error {}
@@ -291,7 +291,7 @@ export function executeAsyncChain(
 		const behavior = suppressProgressForReadOnlyTask(resolvedBehavior ?? resolveStepBehavior(a, buildStepOverrides(s), chainSkills), s.task, originalTask);
 		const skillNames = behavior.skills === false ? [] : behavior.skills;
 		const { resolved: resolvedSkills, missing: missingSkills } = resolveSkillsWithFallback(skillNames, stepCwd, ctx.cwd);
-		if (missingSkills.includes("pi-subagents")) throw new UnavailableSubagentSkillError(UNAVAILABLE_SUBAGENT_SKILL_ERROR);
+		if (missingSkills.includes("pi-mesh-subagents")) throw new UnavailableSubagentSkillError(UNAVAILABLE_SUBAGENT_SKILL_ERROR);
 
 		let systemPrompt = a.systemPrompt?.trim() ?? "";
 		if (resolvedSkills.length > 0) {
@@ -501,7 +501,7 @@ export function executeAsyncSingle(
 	const skillNames = params.skills ?? agentConfig.skills ?? [];
 	const availableModels = params.availableModels;
 	const { resolved: resolvedSkills, missing: missingSkills } = resolveSkillsWithFallback(skillNames, runnerCwd, ctx.cwd);
-	if (missingSkills.includes("pi-subagents")) return formatAsyncStartError("single", UNAVAILABLE_SUBAGENT_SKILL_ERROR);
+	if (missingSkills.includes("pi-mesh-subagents")) return formatAsyncStartError("single", UNAVAILABLE_SUBAGENT_SKILL_ERROR);
 	let systemPrompt = agentConfig.systemPrompt?.trim() ?? "";
 	if (resolvedSkills.length > 0) {
 		const injection = buildSkillInjection(resolvedSkills);

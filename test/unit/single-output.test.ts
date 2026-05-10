@@ -25,7 +25,7 @@ afterEach(() => {
 
 describe("resolveSingleOutputPath", () => {
 	it("keeps absolute paths unchanged", () => {
-		const absolutePath = path.join(os.tmpdir(), "pi-subagents-abs", "report.md");
+		const absolutePath = path.join(os.tmpdir(), "pi-mesh-subagents-abs", "report.md");
 		const resolved = resolveSingleOutputPath(absolutePath, "/repo", "/override");
 		assert.equal(resolved, absolutePath);
 	});
@@ -55,7 +55,7 @@ describe("injectSingleOutputInstruction", () => {
 
 describe("resolveSingleOutput", () => {
 	it("keeps agent-written file content when the file changed during the run", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-output-test-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-output-test-"));
 		tempDirs.push(dir);
 		const outputPath = path.join(dir, "review.md");
 		const before = captureSingleOutputSnapshot(outputPath);
@@ -69,7 +69,7 @@ describe("resolveSingleOutput", () => {
 	});
 
 	it("falls back to persisting the assistant output when the file was not changed", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-output-test-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-output-test-"));
 		tempDirs.push(dir);
 		const outputPath = path.join(dir, "review.md");
 
@@ -83,7 +83,7 @@ describe("resolveSingleOutput", () => {
 	});
 
 	it("preserves read errors from changed output paths", () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagents-output-test-"));
+		const dir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-mesh-subagents-output-test-"));
 		tempDirs.push(dir);
 		const outputPath = path.join(dir, "review.md");
 		const before = captureSingleOutputSnapshot(outputPath);
